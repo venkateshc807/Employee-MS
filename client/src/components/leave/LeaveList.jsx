@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/authContext';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 const LeaveList = () => {
   const { user } = useAuth();
@@ -46,36 +44,7 @@ const LeaveList = () => {
   }
 
   if (!leaves) {
-    return (
-      <div className='p-6'>
-        <div className='text-center'>
-          <h3 className='text-2xl font-bold'>Manage Leaves</h3>
-          <p className='text-sm text-gray-500 mt-1'>Role: {user?.role || 'Unknown'}</p>
-        </div>
-
-        <div className='flex justify-between items-center mt-4'>
-          <input
-            className='px-4 py-1 border border-gray-300 rounded'
-            type="text"
-            placeholder='Search by Department name'
-          />
-          {user?.role === "employee" && (
-            <Link
-              className='px-4 py-1 rounded text-white bg-teal-600'
-              to="/employee-dashboard/add-leave"
-            >
-              Add New Leave
-            </Link>
-          )}
-        </div>
-
-        <div className="mt-6">
-          <Skeleton height={30} count={5} className="mb-4" />
-          <Skeleton height={30} count={1} />
-          <Skeleton height={30} count={1} />
-        </div>
-      </div>
-    );
+    return <div className='text-center mt-10 text-lg'>Loading leaves...</div>;
   }
 
   return (

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { columns, DepartmentButtons } from '../../utils/DepartmentHelper';
 import axios from "axios";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
@@ -12,6 +10,7 @@ const DepartmentList = () => {
   const [filteredDepartments, setFilteredDepartments] = useState([]);
 
   const onDepartmentDelete = async () => {
+    // After delete, re-fetch the departments to keep the list updated
     await fetchDepartments();
   };
 
@@ -33,8 +32,8 @@ const DepartmentList = () => {
           action: <DepartmentButtons Id={dep._id} onDepartmentDelete={onDepartmentDelete} />,
         }));
 
-        setDepartments(data);
-        setFilteredDepartments(data);
+        setDepartments(data); // Update the departments list
+        setFilteredDepartments(data); // Ensure the filtered list is also updated
       }
     } catch (error) {
       console.error("Failed to fetch departments:", error);
@@ -57,43 +56,27 @@ const DepartmentList = () => {
     setFilteredDepartments(records);
   };
 
-  // Skeleton loader JSX for table
-  const SkeletonTable = () => {
-    return (
-      <div className='mt-6 space-y-4'>
-        {Array(5).fill().map((_, idx) => (
-          <div key={idx} className="flex justify-between p-4 border border-gray-200 rounded shadow-sm">
-            <Skeleton width={40} height={20} />
-            <Skeleton width={200} height={20} />
-            <Skeleton width={100} height={20} />
-          </div>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <>
-      <div className='p-5'>
-        <div className='text-center'>
-          <h3 className='text-2xl font-bold'>Manage Departments</h3>
-        </div>
-        <div className='flex justify-between items-center mt-4'>
-          <input
-            className='px-4 py-1 border border-gray-300 rounded'
-            type="text"
-            placeholder='Search by Department name'
-            onChange={filtereDepartments}
-            disabled={depLoading}
-          />
-          <Link className='px-4 py-1 rounded text-white bg-teal-600' to="/admin-dashboard/add-department">
-            Add New Department
-          </Link>
-        </div>
+      {depLoading ? (
+        <div className='text-center text-lg font-semibold py-10'>Loading...</div>
+      ) : (
+        <div className='p-5'>
+          <div className='text-center'>
+            <h3 className='text-2xl font-bold'>Manage Departments</h3>
+          </div>
+          <div className='flex justify-between items-center mt-4'>
+            <input
+              className='px-4 py-1 border border-gray-300 rounded'
+              type="text"
+              placeholder='Search by Department name'
+              onChange={filtereDepartments}
+            />
+            <Link className='px-4 py-1 rounded text-white bg-teal-600' to="/admin-dashboard/add-department">
+              Add New Department
+            </Link>
+          </div>
 
-        {depLoading ? (
-          <SkeletonTable />
-        ) : (
           <div className='mt-6'>
             <DataTable
               columns={columns}
@@ -102,8 +85,8 @@ const DepartmentList = () => {
               highlightOnHover
             />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

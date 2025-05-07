@@ -13,7 +13,7 @@ import dashBoardRouter from "./routes/dashBoard.js"
 connectToDatabase()
 const app = express()
 app.use(cors({
-    origin: "https://ems-beta-one.vercel.app",
+    origin: "https://ems-beta-one.vercel.app/login",
     credentials: true
   }))
   
