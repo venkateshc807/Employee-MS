@@ -15,7 +15,7 @@ const EditDepartment = () => {
         const fetchDepartments = async () => {
           setDepLoading(true)
           try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/department/${id}`, {
+            const response = await axios.get(`https://employee-backend-ten-theta.vercel.app/api/department/${id}`, {
               headers: {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
               }
@@ -48,7 +48,7 @@ const EditDepartment = () => {
             e.preventDefault()
     
             try {
-                const response = await axios.put(`http://127.0.0.1:5000/api/department/${id}`, department,{
+                const response = await axios.put(`https://employee-backend-ten-theta.vercel.app/api/department/${id}`, department,{
                     headers:{
                        Authorization : `Bearer ${localStorage.getItem('token')}`
                     }

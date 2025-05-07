@@ -40,7 +40,7 @@ const AddSalary = () => {
 
         try {
             const response = await axios.post(
-                `http://127.0.0.1:5000/api/salary/add`,
+                `https://employee-backend-ten-theta.vercel.app/api/salary/add`,
                 salary,
                 {
                     headers: {
