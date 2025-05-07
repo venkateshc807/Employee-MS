@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const LeaveDetail = () => {
     const { id } = useParams();
@@ -50,7 +52,23 @@ const LeaveDetail = () => {
     };
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
+                <Skeleton height={30} className="mb-4" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <Skeleton circle height={150} width={150} />
+                    <div>
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                        <Skeleton height={30} className="mb-3" />
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (

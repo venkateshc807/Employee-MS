@@ -12,7 +12,7 @@ import dashBoardRouter from "./routes/dashBoard.js";
 connectToDatabase();
 const app = express();
 
-// Allow all paths under the frontend domain (not just '/login')
+
 app.use(cors({
   origin: "https://ems-beta-one.vercel.app",  // Update to allow the entire frontend domain
   credentials: true
