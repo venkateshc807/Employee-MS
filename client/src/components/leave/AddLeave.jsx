@@ -24,7 +24,7 @@ const AddLeave = () => {
 
         try {
             const response = await axios.post(
-                `http://localhost:5000/api/leave/add`,
+                `https://employee-backend-ten-theta.vercel.app/api/leave/add`,
                 leave,
                 {
                     headers: {

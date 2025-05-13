@@ -15,7 +15,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["https://ems-beta-one.vercel.app", "http://localhost:5173"],  // Update to allow the entire frontend domain
+  origin: ["https://ems-beta-one.vercel.app","http://localhost:5173"],  // Update to allow the entire frontend domain
   credentials: true
 }));
 
