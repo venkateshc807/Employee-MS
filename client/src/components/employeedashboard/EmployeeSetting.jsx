@@ -35,7 +35,7 @@ const EmployeeSetting = () => {
         } else {
             try {
                 const response = await axios.put(
-                    "https://employee-backend-ten-theta.vercel.app/api/setting/change-password",
+                    "http://localhost:5000/api/setting/change-password",
                     setting,
                     {
                         headers: {

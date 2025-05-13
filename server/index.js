@@ -8,13 +8,14 @@ import salaryRouter from "./routes/salaryRoute.js";
 import leaveRouter from "./routes/leaveRoute.js";
 import settingRouter from "./routes/settingRoute.js";
 import dashBoardRouter from "./routes/dashBoard.js";
+import attendanceRouter from "./routes/attendanceRoute.js"
 
 connectToDatabase();
 const app = express();
 
 
 app.use(cors({
-  origin: "https://ems-beta-one.vercel.app",  // Update to allow the entire frontend domain
+  origin: ["https://ems-beta-one.vercel.app", "http://localhost:5173"],  // Update to allow the entire frontend domain
   credentials: true
 }));
 
@@ -27,6 +28,7 @@ app.use("/api/employee", employeRouter);
 app.use("/api/salary", salaryRouter);
 app.use("/api/leave", leaveRouter);
 app.use("/api/setting", settingRouter);
+app.use("/api/attendance", attendanceRouter);
 app.use("/api/dashboard", dashBoardRouter);
 
 app.listen(process.env.PORT, () => {

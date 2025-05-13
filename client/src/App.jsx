@@ -23,6 +23,8 @@ import AddLeave from './components/leave/AddLeave'
 import EmployeeSetting from './components/employeedashboard/EmployeeSetting'
 import Table from './components/leave/Table'
 import LeaveDetail from './components/leave/LeaveDetail'
+import Attendance from './components/attandance/Attendance'
+import AttendanceReport from './components/attandance/AttendanceReport'
 
 
 
@@ -62,6 +64,8 @@ function App() {
 
               <Route path='/admin-dashboard/employees/salary/:id' element={<ViewSalary/>}/>
               <Route path='/admin-dashboard/salary/add' element={<AddSalary/>}/>
+              <Route path='/admin-dashboard/attendance' element={<Attendance/>}/>
+              <Route path='/admin-dashboard/attendance-report' element={<AttendanceReport/>}/>
 
 
 
